@@ -16,18 +16,56 @@ namespace ExpertsProject.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+		public string Name {
+			get; set;
+		}
+
+		public int ContactID {
+			get; set;
+		}
+
+		public bool ActiveStatus {
+			get; set;
+		}
+
+		public bool IsAdmin {
+			get; set;
+		}
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+
+		public DbSet<AttachedUsers> AttachedUsers {
+			get; set;
+		}
+
+		public DbSet<Expert> Experts {
+			get; set;
+		}
+
+		public DbSet<Keywords> Keywords {
+			get; set;
+		}
+
+		public DbSet<Message> Messages {
+			get; set;
+		}
+
+		public DbSet<Ticket> Ticket {
+			get; set;
+		}
+
+		public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+
         }
 
-        public static ApplicationDbContext Create()
+		public static ApplicationDbContext Create()
         {
-            return new ApplicationDbContext();
+			return new ApplicationDbContext();
         }
     }
 }
