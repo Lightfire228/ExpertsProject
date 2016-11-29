@@ -21,10 +21,22 @@ namespace ExpertsProject.Models
 			get; set;
 		}
 
-		public int ContactID {
+		public string Street {
 			get; set;
 		}
 
+		public string City {
+			get; set;
+		}
+
+		public string State {
+			get; set;
+		}
+
+		public string Zip {
+			get; set;
+		}
+		
 		public bool ActiveStatus {
 			get; set;
 		}
@@ -42,10 +54,6 @@ namespace ExpertsProject.Models
 		}
 
 		public DbSet<Expert> Experts {
-			get; set;
-		}
-
-		public DbSet<Keywords> Keywords {
 			get; set;
 		}
 
