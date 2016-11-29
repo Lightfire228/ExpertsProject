@@ -22,8 +22,7 @@ namespace ExpertsProject.Models {
 			get; set;
 		}
 
-		[ForeignKey("Keyword")]
-		public int KeywordsID {
+		public string Keywords {
 			get; set;
 		}
 
@@ -31,8 +30,5 @@ namespace ExpertsProject.Models {
 			get; set;
 		}
 
-		public virtual Keywords Keyword {
-			get; set;
-		}
 	}
 }

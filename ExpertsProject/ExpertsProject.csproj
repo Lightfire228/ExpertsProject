@@ -205,11 +205,22 @@
     <Compile Include="Migrations\201611080043095_asdf.Designer.cs">
       <DependentUpon>201611080043095_asdf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611292323559_changed user contact info.cs" />
+    <Compile Include="Migrations\201611292323559_changed user contact info.Designer.cs">
+      <DependentUpon>201611292323559_changed user contact info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611292325552_fixed keywords.cs" />
+    <Compile Include="Migrations\201611292325552_fixed keywords.Designer.cs">
+      <DependentUpon>201611292325552_fixed keywords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611292327302_refixing keywords.cs" />
+    <Compile Include="Migrations\201611292327302_refixing keywords.Designer.cs">
+      <DependentUpon>201611292327302_refixing keywords.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DB Models\AttachedUsers.cs" />
     <Compile Include="Models\DB Models\Expert.cs" />
-    <Compile Include="Models\DB Models\Keywords.cs" />
     <Compile Include="Models\DB Models\Message.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -291,6 +302,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611080043095_asdf.resx">
       <DependentUpon>201611080043095_asdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611292323559_changed user contact info.resx">
+      <DependentUpon>201611292323559_changed user contact info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611292325552_fixed keywords.resx">
+      <DependentUpon>201611292325552_fixed keywords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611292327302_refixing keywords.resx">
+      <DependentUpon>201611292327302_refixing keywords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
