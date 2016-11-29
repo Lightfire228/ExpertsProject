@@ -1,6 +1,7 @@
-﻿@model ExpertsProject.Models.RegisterViewModel
+﻿
+@model ExpertsProject.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "ExpertRegister";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -8,10 +9,10 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new General User Account.</h4>
+    <h4>Create a new Expert Account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    
+
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -76,3 +77,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
