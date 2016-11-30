@@ -160,7 +160,7 @@ namespace ExpertsProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, Street = model.Street, City = model.City, State = model.State, Zip = model.Zip };
+                var user = new ApplicationUser { UserName = model.Email, Name = model.Name, Email = model.Email, PhoneNumber = model.PhoneNumber, Street = model.Street, City = model.City, State = model.State, Zip = model.Zip };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -187,20 +187,22 @@ namespace ExpertsProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.DefaultModel.Email, Email = model.DefaultModel.Email, PhoneNumber = model.DefaultModel.PhoneNumber, Street = model.DefaultModel.Street, City = model.DefaultModel.City, State = model.DefaultModel.State, Zip = model.DefaultModel.Zip };
+                var user = new ApplicationUser { UserName = model.DefaultModel.Email, Name = model.DefaultModel.Name, Email = model.DefaultModel.Email, PhoneNumber = model.DefaultModel.PhoneNumber, Street = model.DefaultModel.Street, City = model.DefaultModel.City, State = model.DefaultModel.State, Zip = model.DefaultModel.Zip };
                 var result = await UserManager.CreateAsync(user, model.DefaultModel.Password);
 
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    
+                    // tells controller not to try to write over top of existing user.
+                    var u = _dbContext.Users.Find(user.Id);
 
                     // populate expert fields only if user creation succeeded.
-                    Models.Expert expert = new Models.Expert();
-                    expert.User = user;
+                    Models.Expert expert = new Expert();
+                    expert.User = u;
                     expert.Keywords = model.Keywords;
                     expert.ExpertiseCatagory = model.ExpertiseCatagory;
                     expert.Validated = false;
-                    expert.Id = user.Id;
 
                     // adds populated expert too database, then saves.
                     _dbContext.Experts.Add(expert);
