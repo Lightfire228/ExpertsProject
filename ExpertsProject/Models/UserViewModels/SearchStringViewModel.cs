@@ -4,19 +4,10 @@ using System.Linq;
 using System.Web;
 
 namespace ExpertsProject.Models.UserViewModels {
-	public class SearchViewModel {
+	public class SearchStringViewModel {
 
-		public string Name {
+		public string SearchText {
 			get; set;
 		}
-
-		public string Expertise {
-			get; set;
-		}
-
-		public string Id {
-			get; set;
-		}
-
 	}
 }
