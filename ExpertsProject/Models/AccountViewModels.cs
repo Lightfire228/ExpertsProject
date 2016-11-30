@@ -65,7 +65,6 @@ namespace ExpertsProject.Models
     public class RegisterViewModel
     {
         [Required]
-
         [Display(Name = "Name")]
         public string Name { get; set; }
 
@@ -80,17 +79,14 @@ namespace ExpertsProject.Models
         public string PhoneNumber { get; set; }
 
         [Required]
-
         [Display(Name = "Street")]
         public string Street { get; set; }
 
         [Required]
-
         [Display(Name = "City")]
         public string City { get; set; }
 
         [Required]
-
         [Display(Name = "State")]
         public string State { get; set; }
 

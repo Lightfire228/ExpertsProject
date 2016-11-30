@@ -17,6 +17,7 @@ namespace ExpertsProject.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -143,6 +144,14 @@ namespace ExpertsProject.Controllers
         }
 
         //
+        // GET: /Account/ExpertRegister
+        [AllowAnonymous]
+        public ActionResult ExpertRegister()
+        {
+            return View();
+        }
+
+        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -171,6 +180,41 @@ namespace ExpertsProject.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> ExpertRegister(ExpertRegistryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.DefaultModel.Email, Email = model.DefaultModel.Email, PhoneNumber = model.DefaultModel.PhoneNumber, Street = model.DefaultModel.Street, City = model.DefaultModel.City, State = model.DefaultModel.State, Zip = model.DefaultModel.Zip };
+                var result = await UserManager.CreateAsync(user, model.DefaultModel.Password);
+
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // populate expert fields only if user creation succeeded.
+                    Models.Expert expert = new Models.Expert();
+                    expert.User = user;
+                    expert.Keywords = model.Keywords;
+                    expert.ExpertiseCatagory = model.ExpertiseCatagory;
+                    expert.Validated = false;
+                    expert.Id = user.Id;
+
+                    // adds populated expert too database, then saves.
+                    _dbContext.Experts.Add(expert);
+                    _dbContext.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
 
         //
         // GET: /Account/ConfirmEmail
