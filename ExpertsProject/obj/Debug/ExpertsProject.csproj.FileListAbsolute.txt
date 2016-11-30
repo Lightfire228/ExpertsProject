@@ -169,3 +169,6 @@ C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProj
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.changedusercontactinfo.resources
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.fixedkeywords.resources
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.refixingkeywords.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.changedusercontactinfo.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.fixedkeywords.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.refixingkeywords.resources
