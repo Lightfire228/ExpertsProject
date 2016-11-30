@@ -65,7 +65,6 @@ namespace ExpertsProject.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
@@ -75,27 +74,23 @@ namespace ExpertsProject.Models
         public string Email { get; set; }
 
         [Required]
-        [EmailAddress]
-        [Display(Name = "Phone")]
-        public string Phone { get; set; }
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Street")]
         public string Street { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "City")]
         public string City { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "State")]
         public string State { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Zip")]
         public string Zip { get; set; }
 
@@ -109,6 +104,9 @@ namespace ExpertsProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "IsActive")]
+        public string IsActive { get; set; }
     }
 
     public class ResetPasswordViewModel

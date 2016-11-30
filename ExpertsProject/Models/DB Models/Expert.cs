@@ -10,7 +10,7 @@ namespace ExpertsProject.Models {
 		
 		[Key]
 		[ForeignKey("User")]
-		public string ID {
+		public string Id {
 			get; set;
 		}
 

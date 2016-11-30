@@ -80,8 +80,6 @@ D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\bin\Microsoft.O
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.csprojResolveAssemblyReference.cache
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.dll
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.pdb
-D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.asdf.resources
-D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.csproj.GenerateResource.Cache
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\bin\ApplicationInsights.config
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\bin\roslyn\csc.exe
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -162,10 +160,5 @@ C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\bin\Microsoft.Owin.Se
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.csprojResolveAssemblyReference.cache
-C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.asdf.resources
-C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.csproj.GenerateResource.Cache
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.dll
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.pdb
-D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.changedusercontactinfo.resources
-D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.fixedkeywords.resources
-D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.refixingkeywords.resources

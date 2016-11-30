@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ExpertsProject.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace ExpertsProject.Controllers
 {
@@ -16,7 +18,8 @@ namespace ExpertsProject.Controllers
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+		private ApplicationUserManager _userManager;
+		private static ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -133,11 +136,27 @@ namespace ExpertsProject.Controllers
                     return View(model);
             }
         }
-
+        
+        //
+        // GET: /Account/ChooseRole
+        [AllowAnonymous]
+        public ActionResult ChooseRole()
+        {
+            return View();
+        }
+        
         //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Account/ExpertRegister
+        [AllowAnonymous]
+        public ActionResult ExpertRegister()
         {
             return View();
         }
@@ -151,19 +170,19 @@ namespace ExpertsProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, Street = model.Street, City = model.City, State = model.State, Zip = model.Zip };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+					// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+					// Send an email with this link
+					// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+					// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+					// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+					return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -172,9 +191,42 @@ namespace ExpertsProject.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/ConfirmEmail
+        [HttpPost]
         [AllowAnonymous]
+        public async Task<ActionResult> ExpertRegister(ExpertRegistryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { Name = model.DefaultModel.Name, UserName = model.DefaultModel.Email, Email = model.DefaultModel.Email, PhoneNumber = model.DefaultModel.PhoneNumber, Street = model.DefaultModel.Street, City = model.DefaultModel.City, State = model.DefaultModel.State, Zip = model.DefaultModel.Zip };
+                var result = await UserManager.CreateAsync(user, model.DefaultModel.Password);
+
+                if (result.Succeeded)
+                {
+
+					var u = _dbContext.Users.Find(user.Id);
+
+					// populate expert fields only if user creation succeeded.
+					Models.Expert expert = new Models.Expert();
+					expert.User = u;
+					expert.Keywords = model.Keywords;
+					expert.ExpertiseCatagory = model.ExpertiseCatagory;
+					expert.Validated = false;
+
+					// adds populated expert too database, then saves.
+					_dbContext.Experts.Add(expert);
+					_dbContext.SaveChanges();
+
+					return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+		// GET: /Account/ConfirmEmail
+		[AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
