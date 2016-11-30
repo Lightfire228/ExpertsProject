@@ -105,8 +105,8 @@ namespace ExpertsProject.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "IsActive")]
-        public string IsActive { get; set; }
+        [Display(Name = "Active Status")]
+        public string ActiveStatus { get; set; }
     }
 
     public class ResetPasswordViewModel
