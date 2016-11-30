@@ -134,7 +134,15 @@ namespace ExpertsProject.Controllers
                     return View(model);
             }
         }
-
+        
+        //
+        // GET: /Account/ChooseRole
+        [AllowAnonymous]
+        public ActionResult ChooseRole()
+        {
+            return View();
+        }
+        
         //
         // GET: /Account/Register
         [AllowAnonymous]
