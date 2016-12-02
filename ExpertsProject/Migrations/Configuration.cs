@@ -26,7 +26,6 @@ namespace ExpertsProject.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
         }
     }
 }
