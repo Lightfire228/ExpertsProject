@@ -203,6 +203,8 @@ namespace ExpertsProject.Controllers
                 if (result.Succeeded)
                 {
 
+					await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
 					var u = _dbContext.Users.Find(user.Id);
 
 					// populate expert fields only if user creation succeeded.

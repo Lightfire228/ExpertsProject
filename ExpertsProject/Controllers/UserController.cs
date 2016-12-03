@@ -27,22 +27,31 @@ namespace ExpertsProject.Controllers
 		[HttpPost]
 		public ActionResult Search(SearchStringViewModel model) {
 
+			// If you want to redirect to login if not loggedin
+			//if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+				//return RedirectToAction("Login", "Account");
+
 			string search = model.SearchText;
 
 			IEnumerable<Expert> experts = _dbContext.Experts.ToList();
 			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
 			IEnumerable<SearchViewModel> models;
 
+			//foreach (var expert in experts) {
+				//foreach (var str in expert.Keywords.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries))
+					//System.Diagnostics.Debug.WriteLine(model.SearchText + " equals " + str + ": " + );
+			//}
+
 			experts = from expert in experts
 					  from str in expert.Keywords.Split(new string[] {", "}, StringSplitOptions.RemoveEmptyEntries)
-					  where expert.Validated == true && search == str
+					  where expert.Validated && search.ToLower().Equals(str.ToLower())
 					  select expert;
 
 			models = from expert in experts
 					 join user in users on expert.Id equals user.Id
 					 select new SearchViewModel { Name = user.Name, Expertise = expert.ExpertiseCatagory, Id = expert.Id };
 
-			return View(model);
+			return View(models);
 		}
     }
 }

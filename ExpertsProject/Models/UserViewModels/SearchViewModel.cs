@@ -18,5 +18,6 @@ namespace ExpertsProject.Models.UserViewModels {
 			get; set;
 		}
 
+
 	}
 }

@@ -207,7 +207,7 @@
     <Compile Include="Models\DB Models\AttachedUsers.cs" />
     <Compile Include="Models\DB Models\Expert.cs" />
     <Compile Include="Models\DB Models\Message.cs" />
-    <Compile Include="Models\expertRegistryViewModel.cs" />
+    <Compile Include="Models\ExpertRegistryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\DB Models\Ticket.cs" />
@@ -279,6 +279,8 @@
     <Content Include="Views\Account\ExpertRegister.cshtml" />
     <Content Include="Views\Account\ChooseRole.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_SearchBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
