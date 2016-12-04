@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ExpertsProject.Models;
+using ExpertsProject.Models.UserViewModels;
 
 namespace ExpertsProject.Controllers
 {
@@ -20,11 +21,43 @@ namespace ExpertsProject.Controllers
         {
             return View();
         }
-        public ActionResult AdminDactivate()
+        public ActionResult AdminValidate()
         {
-            var expert = _dbContext.Experts.ToList();
 
-            return View(expert);
+            IEnumerable<Expert> experts = _dbContext.Experts.ToList();
+            IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+            IEnumerable<SearchViewModel> models;
+
+
+            experts = from expert in experts
+                      where !expert.Validated
+                      select expert;
+
+            models = from expert in experts
+                     join user in users on expert.Id equals user.Id
+                     select new SearchViewModel { Name = user.Name, Expertise = expert.ExpertiseCatagory, Id = expert.Id };
+
+            return View(models);
+        }
+        public ActionResult AdminDeactivate()
+        {
+
+            IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+
+            users = from user in users
+                    where user.ActiveStatus
+                    select user;
+
+            return View(users);
+        }
+        public ActionResult DeactivateForm(int id)
+        {
+            var ticket = _dbContext.Users.SingleOrDefault(v => v.Id == id);
+
+            if (ticket == null)
+                return HttpNotFound();
+
+            return View(ticket);
         }
         public ActionResult Verify(String id)
         {

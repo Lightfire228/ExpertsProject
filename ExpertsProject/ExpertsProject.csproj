@@ -317,6 +317,7 @@
     <Content Include="Views\Ticket\UserTicketView.cshtml" />
     <Content Include="Views\Admin\AdminDeactivate.cshtml" />
     <Content Include="Views\Admin\DeactivateForm.cshtml" />
+    <Content Include="Views\Admin\AdminValidate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
