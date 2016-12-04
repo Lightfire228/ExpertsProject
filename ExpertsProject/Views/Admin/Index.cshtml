@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Administrator View</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Deactivate Accounts</h2>
+        <p>
+            Deactivating acounts will cause experts to not appear in the user search feature. Experts are able to reacitave their own account, and will still appear on any ticket previously openned.
+        </p>
+        <p><a class="btn btn-default" href="../Admin/AdminDeactivate">Click Here &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Ativate Accounts</h2>
+        <p>
+        This option will allow you to activate any deactivated Experts. Activating an Expert will cause them to appear in the user search feature, where they can be added to tickets.</p>
+        <p>
+        <a class="btn btn-default" href="../Admin/AdminActivate">Click Here &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Verify Experts</h2>
+        <p>Experts are by default set to not verified. Experts will have to be verified before certian features will apply to their accounts.</p>
+        <p><a class="btn btn-default" href="../Admin/AdminVerify">Click Here &raquo;</a></p>
+    </div>
+</div>

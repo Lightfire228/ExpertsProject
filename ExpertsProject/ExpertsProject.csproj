@@ -313,8 +313,15 @@
     <Content Include="Views\Shared\AttachExperts.cshtml" />
     <Content Include="Views\Ticket\_ViewTicketContents.cshtml" />
     <Content Include="Views\Ticket\UserTicketView.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Ticket\ExpertIndex.cshtml" />
     <Content Include="Views\Ticket\ExpertTicketView.cshtml" />
+=======
+    <Content Include="Views\Admin\AdminDeactivate.cshtml" />
+    <Content Include="Views\Admin\DeactivateForm.cshtml" />
+    <Content Include="Views\Admin\AdminValidate.cshtml" />
+    <Content Include="Views\Admin\AdminActivate.cshtml" />
+>>>>>>> 4ca9bf999ac7c81bfaecaffbbffc2bfe253d9223
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
