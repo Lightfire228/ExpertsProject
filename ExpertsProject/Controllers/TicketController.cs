@@ -152,8 +152,17 @@ namespace ExpertsProject.Controllers
 
 			if (model.Deactivate) {
 				
-				message.BodyText = "<b style=\"color: red\">Expert " + getUser().Name + " has removed themselves from this ticket.\nReason: ";
-				
+				message.BodyText = "Expert " + getUser().Name + " has removed themselves from this ticket. Reason: \n" + message.BodyText;
+				_dbContext.Messages.Add(message);
+				_dbContext.SaveChanges();
+	
+				AttachedUsers attached = _dbContext.AttachedUsers.Find(getUser().Id, ticket.ID);
+
+				_dbContext.AttachedUsers.Remove(attached);
+				_dbContext.SaveChanges();
+
+				return RedirectToAction("Index");
+
 			}
 
 			_dbContext.Messages.Add(message);

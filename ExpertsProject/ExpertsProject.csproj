@@ -196,7 +196,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
@@ -305,7 +304,6 @@
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_SearchBar.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\User\_ListExperts.cshtml" />
     <Content Include="Views\Shared\Oops.cshtml" />
     <Content Include="Views\Ticket\UserIndex.cshtml" />
@@ -315,13 +313,8 @@
     <Content Include="Views\Shared\AttachExperts.cshtml" />
     <Content Include="Views\Ticket\_ViewTicketContents.cshtml" />
     <Content Include="Views\Ticket\UserTicketView.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Ticket\ExpertIndex.cshtml" />
     <Content Include="Views\Ticket\ExpertTicketView.cshtml" />
-=======
-    <Content Include="Views\Admin\AdminDeactivate.cshtml" />
-    <Content Include="Views\Admin\DeactivateForm.cshtml" />
->>>>>>> f5a2e9250a53dbc6632ec98ececbe212d881a786
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
