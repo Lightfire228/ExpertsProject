@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
@@ -316,7 +317,6 @@
     <Content Include="Views\Ticket\ExpertIndex.cshtml" />
     <Content Include="Views\Ticket\ExpertTicketView.cshtml" />
     <Content Include="Views\Admin\AdminDeactivate.cshtml" />
-    <Content Include="Views\Admin\DeactivateForm.cshtml" />
     <Content Include="Views\Admin\AdminValidate.cshtml" />
     <Content Include="Views\Admin\AdminActivate.cshtml" />
   </ItemGroup>

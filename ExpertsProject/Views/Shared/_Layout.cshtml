@@ -27,8 +27,15 @@
                         <li>@Html.ActionLink("See Tickets", "Index", "Ticket")</li> 
                     }
 
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @using ExpertsProject.Controllers
+                    @{  
+                        var user = UserController.getCurrentUser();
+                        if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated && user.IsAdmin) {
+                            <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+                        }
+                    }
                 </ul>
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

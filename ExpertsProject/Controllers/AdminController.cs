@@ -61,15 +61,7 @@ namespace ExpertsProject.Controllers
 
             return View(users);
         }
-        public ActionResult DeactivateForm(int id)
-        {
-            var ticket = _dbContext.Users.SingleOrDefault(v => v.Id == id);
 
-            if (ticket == null)
-                return HttpNotFound();
-
-            return View(ticket);
-        }
         public ActionResult Verify(String id)
         {
             var expert = _dbContext.Experts.SingleOrDefault(v => v.Id == id);
@@ -81,14 +73,14 @@ namespace ExpertsProject.Controllers
         }
         public ActionResult Deactivate(ApplicationUser expert)
         {
-            var expertInDb = _dbContext.Users.SingleOrDefault(v => v.Id == expert.Id);
+            var expertInDb = _dbContext.Users.Find(expert.Id);
 
-            if (expertInDb == null)
-                return HttpNotFound();
-            expertInDb.ActiveStatus = expert.ActiveStatus;
-            _dbContext.SaveChanges();
+			expertInDb.ActiveStatus = false;
 
-            return RedirectToAction("Index");
+			_dbContext.SaveChanges();
+
+            return RedirectToAction("AdminDeactivate");
         }
-    }
+
+	}
 }
