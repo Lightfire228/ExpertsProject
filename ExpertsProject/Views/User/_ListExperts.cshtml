@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ExpertsProject.Models.UserViewModels.SearchViewModel>
+
+@if (Model.LongCount() > 0) {
+
+<table class="mytable">
+    <tr>
+        <td>
+            <b>Expert Name</b>
+        </td>
+        <td>
+            <b>Experties Catagory</b>
+        </td>
+
+        <td>
+            <b>Invite to existing Ticket</b>
+        </td>
+    </tr>
+    @foreach (var expert in Model) {
+
+        <tr>
+            <td>
+                @Html.Encode(expert.Name)
+            </td>
+            <td>
+                @Html.Encode(expert.Expertise)
+            </td>
+            <td>
+                @Html.ActionLink("Invite", "Invite", new { Id = expert.Id })
+            </td>
+        </tr>
+    }
+</table>
+}
+@if (Model.LongCount() <= 0) {
+<h3>No results</h3>
+}
