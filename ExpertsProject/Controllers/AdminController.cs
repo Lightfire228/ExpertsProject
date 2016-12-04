@@ -20,6 +20,12 @@ namespace ExpertsProject.Controllers
         {
             return View();
         }
+        public ActionResult AdminDactivate()
+        {
+            var expert = _dbContext.Experts.ToList();
+
+            return View(expert);
+        }
         public ActionResult Verify(String id)
         {
             var expert = _dbContext.Experts.SingleOrDefault(v => v.Id == id);
@@ -28,6 +34,17 @@ namespace ExpertsProject.Controllers
                 return HttpNotFound();
 
             return View(expert);
+        }
+        public ActionResult Deactivate(ApplicationUser expert)
+        {
+            var expertInDb = _dbContext.Users.SingleOrDefault(v => v.Id == expert.Id);
+
+            if (expertInDb == null)
+                return HttpNotFound();
+            expertInDb.ActiveStatus = expert.ActiveStatus;
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
