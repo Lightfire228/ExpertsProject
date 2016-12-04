@@ -1,0 +1,18 @@
+﻿@model ExpertsProject.Models.ApplicationUser
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "DeactivateForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deactivate Expert</h2>
+@using (Html.BeginForm("Deactivate", "Users", FormMethod.Post, new { @class = "form" }))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.ActiveStatus)
+    <br />
+    <Label>Open: </Label>
+    @Html.CheckBoxFor(m => m.ActiveStatus, new { @class = "form-control" })
+</div>
+<input type="submit" class="btn btn-primary" value="Submit" />
+}
