@@ -281,6 +281,10 @@
     <Content Include="Views\Account\ChooseRole.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AdminDeactivate.cshtml" />
+    <Content Include="Views\Admin\AdminActivate.cshtml" />
+    <Content Include="Views\Admin\AdminVerify.cshtml" />
+    <Content Include="Views\Admin\Verify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

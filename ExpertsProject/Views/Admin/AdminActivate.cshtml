@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ExpertsProject.Models.Expert>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "AdminActivate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AdminActivate</h2>
+
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Admin Name
+        </th>
+        <th>
+            Expertise
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Open
+        </th>
+    </tr>
+
+    @foreach (var expert in Model)
+            {
+                if (User.Identity.GetUserName() == ticket.TicketOwner)
+                {
+            <tr>
+                <td>
+                    @Html.ActionLink("Activate", "Edit", new { id = ticket.TicketId }) |
+                </td>
+                <td>
+                    @Html.Encode(ticket.TicketId)
+                </td>
+                <td>
+                    @Html.Encode(ticket.TicketTitle)
+                </td>
+                <td>
+                    @Html.Encode(ticket.TicketDescription)
+                </td>
+                <td>
+                    @Html.Encode(ticket.TicketStatus)
+                </td>
+            </tr>
+        }
+    }
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
