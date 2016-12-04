@@ -14,9 +14,23 @@ namespace ExpertsProject.Controllers
 		private ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         // GET: User
-        public ActionResult Index()
-        {
-            return View();
+        public ActionResult Index() {
+
+			IEnumerable<Expert> experts = _dbContext.Experts.ToList();
+			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+			IEnumerable<SearchViewModel> model;
+
+			experts = from expert in experts
+					  where expert.Validated
+					  select expert;
+					  
+			System.Diagnostics.Debug.WriteLine("STR: " + experts.First().Validated);
+
+			model = from expert in experts
+					join user in users on expert.Id equals user.Id
+					select new SearchViewModel { Name = user.Name, Expertise = expert.ExpertiseCatagory, Id = expert.Id };
+
+			return View(model);
         }
 
 		public ActionResult Search() {
