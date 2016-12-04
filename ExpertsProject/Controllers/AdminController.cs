@@ -6,96 +6,71 @@ using System.Web.Mvc;
 using ExpertsProject.Models;
 using ExpertsProject.Models.UserViewModels;
 
-namespace ExpertsProject.Controllers
-{
-    public class AdminController : Controller
-    {
-        private ApplicationDbContext _dbContext;
+namespace ExpertsProject.Controllers {
+	public class AdminController : Controller {
+		private ApplicationDbContext _dbContext;
 
-        public AdminController()
-        {
-            _dbContext = new ApplicationDbContext();
-        }
-        // GET: Admin
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult AdminVerify()
-        {
+		public AdminController() {
+			_dbContext = new ApplicationDbContext();
+		}
+		// GET: Admin
+		public ActionResult Index() {
+			return View();
+		}
+		public ActionResult AdminVerify() {
 
-            IEnumerable<Expert> experts = _dbContext.Experts.ToList();
-            IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
-            IEnumerable<SearchViewModel> models;
+			IEnumerable<Expert> experts = _dbContext.Experts.ToList();
+			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+			IEnumerable<SearchViewModel> models;
 
 
-            experts = from expert in experts
-                      where !expert.Validated
-                      select expert;
+			experts = from expert in experts
+					  where !expert.Validated
+					  select expert;
 
-            models = from expert in experts
-                     join user in users on expert.Id equals user.Id
-                     select new SearchViewModel { Name = user.Name, Expertise = expert.ExpertiseCatagory, Id = expert.Id };
+			models = from expert in experts
+					 join user in users on expert.Id equals user.Id
+					 select new SearchViewModel { Name = user.Name, Expertise = expert.ExpertiseCatagory, Id = expert.Id };
 
-            return View(models);
-        }
-        public ActionResult AdminDeactivate()
-        {
+			return View(models);
+		}
+		public ActionResult AdminDeactivate() {
 
-            IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
 
-            users = from user in users
-                    where user.ActiveStatus
-                    select user;
+			users = from user in users
+					where user.ActiveStatus
+					select user;
 
-            return View(users);
-        }
-        public ActionResult AdminActivate()
-        {
+			return View(users);
+		}
+		public ActionResult AdminActivate() {
 
-            IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
 
-            users = from user in users
-                    where !user.ActiveStatus
-                    select user;
+			users = from user in users
+					where !user.ActiveStatus
+					select user;
 
-            return View(users);
-        }
-<<<<<<< HEAD
-
-        public ActionResult Verify(String id)
-=======
-        public ActionResult Verify(ApplicationUser expert)
-        {
-            var expertInDb = _dbContext.Experts.Find(expert.Id);
-            expertInDb.Validated = true;
-            _dbContext.SaveChanges();
-            return RedirectToAction("AdminVerify");
-        }
-        public ActionResult Deactivate(ApplicationUser expert)
->>>>>>> aeeb41f566118c4fd2b0792285681512162280fd
-        {
-            var expertInDb = _dbContext.Users.Find(expert.Id);
-            expertInDb.ActiveStatus = false;
-            _dbContext.SaveChanges();
-            return RedirectToAction("AdminDeactivate");
-        }
-        public ActionResult Activate(ApplicationUser expert)
-        {
-            var expertInDb = _dbContext.Users.Find(expert.Id);
-<<<<<<< HEAD
-
-			expertInDb.ActiveStatus = false;
-
+			return View(users);
+		}
+		public ActionResult Verify(ApplicationUser expert) {
+			var expertInDb = _dbContext.Experts.Find(expert.Id);
+			expertInDb.Validated = true;
 			_dbContext.SaveChanges();
-
-            return RedirectToAction("AdminDeactivate");
-=======
-            expertInDb.ActiveStatus = true;
-            _dbContext.SaveChanges();
-            return RedirectToAction("AdminActivate");
->>>>>>> aeeb41f566118c4fd2b0792285681512162280fd
-        }
-
+			return RedirectToAction("AdminVerify");
+		}
+		public ActionResult Deactivate(ApplicationUser expert) {
+			var expertInDb = _dbContext.Users.Find(expert.Id);
+			expertInDb.ActiveStatus = false;
+			_dbContext.SaveChanges();
+			return RedirectToAction("AdminDeactivate");
+		}
+		public ActionResult Activate(ApplicationUser expert) {
+			var expertInDb = _dbContext.Users.Find(expert.Id);
+			expertInDb.ActiveStatus = true;
+			_dbContext.SaveChanges();
+			return RedirectToAction("AdminActivate");
+		}
 	}
 }

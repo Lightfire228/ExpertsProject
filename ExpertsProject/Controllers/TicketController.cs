@@ -54,6 +54,10 @@ namespace ExpertsProject.Controllers
 			if (!isLoggedIn())
 				return RedirectToAction("Login", "Account");
 
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
+
+
 			return View();
 		}
 
@@ -62,6 +66,9 @@ namespace ExpertsProject.Controllers
 
 			if (!isLoggedIn())
 				return RedirectToAction("Oops");
+
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
 
 			Ticket ticket        = new Ticket();
 			Message message      = new Message();
@@ -142,6 +149,9 @@ namespace ExpertsProject.Controllers
 			if (!isLoggedIn())
 				return RedirectToAction("Oops");
 
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
+
 			Ticket ticket = _dbContext.Ticket.Find(model.TicketID);
 			Message message = new Message();
 
@@ -175,6 +185,9 @@ namespace ExpertsProject.Controllers
 
 			if (!isLoggedIn())
 				return RedirectToAction("Oops");
+
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
 
 			Ticket ticket = _dbContext.Ticket.Find(model.TicketID);
 			ApplicationUser user = _dbContext.Users.Find(model.UserID);
