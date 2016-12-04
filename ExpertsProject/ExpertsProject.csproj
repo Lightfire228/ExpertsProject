@@ -315,12 +315,16 @@
     <Content Include="Views\Shared\AttachExperts.cshtml" />
     <Content Include="Views\Ticket\_ViewTicketContents.cshtml" />
     <Content Include="Views\Ticket\UserTicketView.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Ticket\ExpertIndex.cshtml" />
     <Content Include="Views\Ticket\ExpertTicketView.cshtml" />
+=======
+    <Content Include="Views\Admin\AdminDeactivate.cshtml" />
+    <Content Include="Views\Admin\DeactivateForm.cshtml" />
+>>>>>>> f5a2e9250a53dbc6632ec98ececbe212d881a786
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -167,3 +167,8 @@ D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\Exper
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.Killing_messages_table.resources
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.addingmessages.resources
 D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.asdfrt.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.addedtitletotickets.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.Killing_messages_table.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.addingmessages.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.asdfrt.resources
+C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.csproj.GenerateResource.Cache

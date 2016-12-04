@@ -1,0 +1,16 @@
+﻿@model ExpertsProject.Models.Expert
+@{
+    ViewBag.Title = "Verify";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Verify</h2>
+@using (Html.BeginForm("Validate", "Admin", FormMethod.Post, new { @class = "form" }))
+{
+    <div class="form-group">
+        <Label>Verify: </Label>
+        @Html.CheckBoxFor(m => m.Validated, new { @class = "form-control" })
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit" />
+
+}
