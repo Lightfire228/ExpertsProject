@@ -21,7 +21,7 @@ namespace ExpertsProject.Controllers
         {
             return View();
         }
-        public ActionResult AdminValidate()
+        public ActionResult AdminVerify()
         {
 
             IEnumerable<Expert> experts = _dbContext.Experts.ToList();
@@ -61,14 +61,12 @@ namespace ExpertsProject.Controllers
 
             return View(users);
         }
-        public ActionResult Verify(String id)
+        public ActionResult Verify(ApplicationUser expert)
         {
-            var expert = _dbContext.Experts.SingleOrDefault(v => v.Id == id);
-
-            if (expert == null)
-                return HttpNotFound();
-
-            return View(expert);
+            var expertInDb = _dbContext.Experts.Find(expert.Id);
+            expertInDb.Validated = true;
+            _dbContext.SaveChanges();
+            return RedirectToAction("AdminVerify");
         }
         public ActionResult Deactivate(ApplicationUser expert)
         {
