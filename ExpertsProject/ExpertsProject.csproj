@@ -315,6 +315,8 @@
     <Content Include="Views\Shared\AttachExperts.cshtml" />
     <Content Include="Views\Ticket\_ViewTicketContents.cshtml" />
     <Content Include="Views\Ticket\UserTicketView.cshtml" />
+    <Content Include="Views\Ticket\ExpertIndex.cshtml" />
+    <Content Include="Views\Ticket\ExpertTicketView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

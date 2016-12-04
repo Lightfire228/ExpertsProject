@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace ExpertsProject.Models.TicketViewModels {
 	public class TicketContentsViewModel {
+
+		public TicketContentsViewModel() {
+			Deactivate = false;
+		}
 
 		public Ticket Ticket {
 			get; set;
@@ -27,6 +32,11 @@ namespace ExpertsProject.Models.TicketViewModels {
 		}
 
 		public IEnumerable<ApplicationUser> AttachedExperts {
+			get; set;
+		}
+
+		[Display(Name = "Remove me from Ticket?")]
+		public bool Deactivate {
 			get; set;
 		}
 

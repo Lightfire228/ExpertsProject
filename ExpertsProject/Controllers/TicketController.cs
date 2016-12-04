@@ -106,7 +106,7 @@ namespace ExpertsProject.Controllers
 			IEnumerable<Expert> preAddedExperts;
 
 			experts = from expert in _dbContext.Experts.ToList()
-					  where expert.Validated
+					  where expert.Validated && expert.Id != getUser().Id // So experts don't add themselves
 					  select expert;
 
 			preAddedExperts = from expert in experts
@@ -150,6 +150,12 @@ namespace ExpertsProject.Controllers
 			message.User = getUser();
 			message.Ticket = ticket;
 
+			if (model.Deactivate) {
+				
+				message.BodyText = "<b style=\"color: red\">Expert " + getUser().Name + " has removed themselves from this ticket.\nReason: ";
+				
+			}
+
 			_dbContext.Messages.Add(message);
 			_dbContext.SaveChanges();
 
@@ -178,9 +184,29 @@ namespace ExpertsProject.Controllers
 
 		public ActionResult ExpertIndex() {
 
-			return View();
+			if (!isLoggedIn()) {
+				return RedirectToAction("Login", "Account");
+			}
+
+			if (!isExpert())
+				return RedirectToAction("UserIndex");
+
+			IEnumerable<Ticket> modelTickets;
+			IEnumerable<Ticket> tickets = _dbContext.Ticket.ToList();
+
+			ApplicationUser user = getUser();
+
+			modelTickets = from ticket in tickets
+						   from attached in _dbContext.AttachedUsers.ToList()
+						   where ticket.ID == attached.TicketID && user.Id == attached.UserID
+						   select ticket;
+
+			TicketsList model = new TicketsList();
+			model.Tickets = modelTickets;
+			model.IsMe = false;
+
+			return View(model);
 		}
-		
 
 		public bool isExpert(ApplicationUser user) {
 			return _dbContext.Experts.Find(user.Id) != null;

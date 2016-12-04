@@ -1,0 +1,19 @@
+﻿@model ExpertsProject.Models.TicketViewModels.TicketsList
+
+@{
+    ViewBag.Title = "ExpertIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tickets to respond</h2>
+
+@Html.ActionLink("Switch to my open tickets", "UserIndex")
+
+@{
+    Html.RenderPartial("_ViewTickets");
+    if (Model.Tickets.LongCount() <= 0) {
+    <h3>You're not attached to any tickets</h3>
+    }
+}
+
+

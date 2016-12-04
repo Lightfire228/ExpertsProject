@@ -27,9 +27,6 @@
             <b>Experties Catagory</b>
         </td>
 
-        <td>
-            <b>Invite to existing Ticket</b>
-        </td>
     </tr>
     @foreach (var expert in Model) {
 
@@ -39,9 +36,6 @@
             </td>
             <td>
                 @Html.Encode(expert.Expertise)
-            </td>
-            <td>
-                @Html.ActionLink("Invite", "Invite", new { Id = expert.Id })
             </td>
         </tr>
     }
