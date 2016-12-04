@@ -50,6 +50,17 @@ namespace ExpertsProject.Controllers
 
             return View(users);
         }
+        public ActionResult AdminActivate()
+        {
+
+            IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+
+            users = from user in users
+                    where !user.ActiveStatus
+                    select user;
+
+            return View(users);
+        }
         public ActionResult DeactivateForm(int id)
         {
             var ticket = _dbContext.Users.SingleOrDefault(v => v.Id == id);

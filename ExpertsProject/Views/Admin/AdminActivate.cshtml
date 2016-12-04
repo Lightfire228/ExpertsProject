@@ -1,54 +1,55 @@
-﻿@model IEnumerable<ExpertsProject.Models.Expert>
-@using Microsoft.AspNet.Identity
-
+﻿@model IEnumerable<ExpertsProject.Models.ApplicationUser>
 @{
     ViewBag.Title = "AdminActivate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AdminActivate</h2>
+<h2>Activate Experts</h2>
 
-<table>
-    <tr>
-        <th></th>
-        <th>
-            Admin Name
-        </th>
-        <th>
-            Expertise
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Open
-        </th>
-    </tr>
+@if (Model.LongCount() > 0)
+{
 
-    @foreach (var expert in Model)
-            {
-                if (User.Identity.GetUserName() == ticket.TicketOwner)
-                {
+    <style type="text/css" media="all">
+        table.mytable {
+            border-spacing: 50px; /*use to work like cellspacing */
+            width: 500px;
+            height: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(0, 244, 102);
+        }
+
+        tr:nth-child(odd) {
+            background-color: none;
+        }
+
+        /*use to work like cellpadding */
+        th, td {
+            padding: 5px;
+        }
+    </style>
+
+    <table class="mytable">
+        <tr>
+            <td>
+                <b>Users Name</b>
+            </td>
+            <td>
+                <b>Activate Account</b>
+            </td>
+        </tr>
+        @foreach (var expert in Model)
+        {
+
             <tr>
                 <td>
-                    @Html.ActionLink("Activate", "Edit", new { id = ticket.TicketId }) |
+                    @Html.Encode(expert.Name)
                 </td>
                 <td>
-                    @Html.Encode(ticket.TicketId)
-                </td>
-                <td>
-                    @Html.Encode(ticket.TicketTitle)
-                </td>
-                <td>
-                    @Html.Encode(ticket.TicketDescription)
-                </td>
-                <td>
-                    @Html.Encode(ticket.TicketStatus)
+                    @Html.ActionLink("Deactivate", "DeactivateForm", new { Id = expert.Id })
                 </td>
             </tr>
         }
-    }
-</table>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    </table>
+}
