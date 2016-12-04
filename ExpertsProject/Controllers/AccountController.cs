@@ -170,7 +170,10 @@ namespace ExpertsProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, Street = model.Street, City = model.City, State = model.State, Zip = model.Zip };
+                var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email,
+					PhoneNumber = model.PhoneNumber, Street = model.Street, City = model.City, State = model.State, 
+					Zip = model.Zip, ActiveStatus = true };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -197,7 +200,10 @@ namespace ExpertsProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Name = model.DefaultModel.Name, UserName = model.DefaultModel.Email, Email = model.DefaultModel.Email, PhoneNumber = model.DefaultModel.PhoneNumber, Street = model.DefaultModel.Street, City = model.DefaultModel.City, State = model.DefaultModel.State, Zip = model.DefaultModel.Zip };
+                var user = new ApplicationUser { Name = model.DefaultModel.Name, UserName = model.DefaultModel.Email, 
+					Email = model.DefaultModel.Email, PhoneNumber = model.DefaultModel.PhoneNumber, Street = model.DefaultModel.Street,
+					City = model.DefaultModel.City, State = model.DefaultModel.State, Zip = model.DefaultModel.Zip, ActiveStatus = true };
+
                 var result = await UserManager.CreateAsync(user, model.DefaultModel.Password);
 
                 if (result.Succeeded)
@@ -214,7 +220,7 @@ namespace ExpertsProject.Controllers
 					expert.ExpertiseCatagory = model.ExpertiseCatagory;
 					expert.Validated = false;
 
-					// adds populated expert too database, then saves.
+					// adds populated expert to database, then saves.
 					_dbContext.Experts.Add(expert);
 					_dbContext.SaveChanges();
 

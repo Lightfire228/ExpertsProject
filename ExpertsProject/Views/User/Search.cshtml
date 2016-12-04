@@ -6,7 +6,10 @@
 
 <h2>Search</h2>
 
-@{ Html.RenderPartial("_ListExperts"); }
+@{ 
+    Html.RenderPartial("_SearchBar", new ExpertsProject.Models.UserViewModels.SearchStringViewModel());
+    Html.RenderPartial("_ListExperts");
+}
 
 @if (Model.LongCount() <= 0) {
     <h3>No results</h3>
