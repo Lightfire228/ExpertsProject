@@ -7,8 +7,28 @@ using System.Web;
 
 namespace ExpertsProject.Models {
 	public class Message {
+	/*
+	 *	FOR SOME FLIPPING REASON UNBEKNOWNST TO MANKIND,
+	 *	THE IDENTITY PROPERTY WAS NOT SET FOR 'ID'.
+	 *	THIS MEANS THAT WHEN A MESSAGE WAS POSTED, IT WOULD
+	 *	USE THE SAME KEY VALUE BECAUSE IT WASN'T BEING GENERATED.
+	 *	THIS MEANS THAT THE DATABASE INSERT WOULD FAIL BECAUSE IT 
+	 *	VIOLATED THE PRINCIPLE OF UNIQUE IDS
+	 *	
+	 *	TO FIX THIS I HAD TO GO TO THE TABLE PROPERTIES THEMSELVES
+	 *	AND EDIT THE KEY VALUE DIRECTLY AND SET IT TO 'IDENTITY = TRUE'
+	 *	
+	 *	TWO HOURS TO FIGURE THAT OUT
+	 *		
+	 *	ADLKFHBGASDLFHBGASLJDKFHGAS;LDIFHVGL;KSDNFGV';ASDKNFGADGAS'FDG'
+	 *	AFDG
+	 *	OANDFG'OADNFG'LADKNFG
+	 *	A;FDGHFDNG';SAEFDJGKSHDFG;LJSDFKLGSAD
+	 *	
+	 */
 
 		[Key][Column(Order = 1)]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Not necessary but for reasons above, don't want to bother
 		public int ID {
 			get; set;
 		}
@@ -18,7 +38,7 @@ namespace ExpertsProject.Models {
 		[Key][Column(Order = 2)]
 		[ForeignKey("User")]
 		public string UserID {
-			get; set;	
+			get; set;
 		}
 
 		public string BodyText {
@@ -29,7 +49,9 @@ namespace ExpertsProject.Models {
 			get; set;
 		}
 
-		public Ticket IsPartOf {
+		[Required]
+		[ForeignKey("Ticket")]
+		public int IsPartOf {
 			get; set;
 		}
 
