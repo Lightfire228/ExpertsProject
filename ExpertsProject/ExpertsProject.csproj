@@ -208,6 +208,18 @@
     <Compile Include="Migrations\201612040504227_added title to tickets.Designer.cs">
       <DependentUpon>201612040504227_added title to tickets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612040723269_Killing_messages_table.cs" />
+    <Compile Include="Migrations\201612040723269_Killing_messages_table.Designer.cs">
+      <DependentUpon>201612040723269_Killing_messages_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612040727093_adding-messages.cs" />
+    <Compile Include="Migrations\201612040727093_adding-messages.Designer.cs">
+      <DependentUpon>201612040727093_adding-messages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612040739429_asdfrt.cs" />
+    <Compile Include="Migrations\201612040739429_asdfrt.Designer.cs">
+      <DependentUpon>201612040739429_asdfrt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DB Models\AttachedUsers.cs" />
@@ -217,7 +229,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\DB Models\Ticket.cs" />
+    <Compile Include="Models\TicketViewModels\AttachViewModel.cs" />
     <Compile Include="Models\TicketViewModels\NewTicketViewModel.cs" />
+    <Compile Include="Models\TicketViewModels\TicketContentsViewModel.cs" />
     <Compile Include="Models\TicketViewModels\TicketsList.cs" />
     <Compile Include="Models\UserViewModels\SearchStringViewModel.cs" />
     <Compile Include="Models\UserViewModels\SearchViewModel.cs" />
@@ -298,6 +312,9 @@
     <Content Include="Views\Ticket\_ViewTickets.cshtml" />
     <Content Include="Views\Shared\Deactivated.cshtml" />
     <Content Include="Views\Ticket\New.cshtml" />
+    <Content Include="Views\Shared\AttachExperts.cshtml" />
+    <Content Include="Views\Ticket\_ViewTicketContents.cshtml" />
+    <Content Include="Views\Ticket\UserTicketView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,6 +331,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612040504227_added title to tickets.resx">
       <DependentUpon>201612040504227_added title to tickets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612040723269_Killing_messages_table.resx">
+      <DependentUpon>201612040723269_Killing_messages_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612040727093_adding-messages.resx">
+      <DependentUpon>201612040727093_adding-messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612040739429_asdfrt.resx">
+      <DependentUpon>201612040739429_asdfrt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
