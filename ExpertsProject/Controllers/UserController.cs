@@ -19,15 +19,15 @@ namespace ExpertsProject.Controllers
             return View();
         }
 
-		//public ActionResult Search() {
+		public ActionResult Search() {
 			
-		//	return View();
-		//}
+			return RedirectToAction("Index");
+		}
 		
 		[HttpPost]
 		public ActionResult Search(SearchStringViewModel model) {
 
-			// If you want to redirect to login if not loggedin
+			// If you want to redirect to login if not logged in
 			//if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
 				//return RedirectToAction("Login", "Account");
 
@@ -37,10 +37,6 @@ namespace ExpertsProject.Controllers
 			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
 			IEnumerable<SearchViewModel> models;
 
-			//foreach (var expert in experts) {
-				//foreach (var str in expert.Keywords.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries))
-					//System.Diagnostics.Debug.WriteLine(model.SearchText + " equals " + str + ": " + );
-			//}
 
 			experts = from expert in experts
 					  from str in expert.Keywords.Split(new string[] {", "}, StringSplitOptions.RemoveEmptyEntries)

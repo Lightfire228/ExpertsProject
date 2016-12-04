@@ -280,12 +280,10 @@
     <Content Include="Views\Account\ExpertRegister.cshtml" />
     <Content Include="Views\Account\ChooseRole.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_SearchBar.cshtml" />
-=======
     <Content Include="Views\Admin\Index.cshtml" />
->>>>>>> 01c32c5bd685538a9c55b7b085d565b5736be17f
+    <Content Include="Views\User\_ListExperts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
