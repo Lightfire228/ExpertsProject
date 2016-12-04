@@ -8,9 +8,9 @@
 <h2>Home</h2>
 
 @{
-    if (Model.LongCount() > 0) {
-    }
     Html.RenderPartial("_SearchBar", new ExpertsProject.Models.UserViewModels.SearchStringViewModel());
+    <h3>
+        List of All Experts
+    </h3>
     Html.RenderPartial("_listExperts");
 }
-
