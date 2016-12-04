@@ -21,7 +21,7 @@ namespace ExpertsProject.Controllers
         {
             return View();
         }
-        public ActionResult AdminValidate()
+        public ActionResult AdminVerify()
         {
 
             IEnumerable<Expert> experts = _dbContext.Experts.ToList();
@@ -61,25 +61,40 @@ namespace ExpertsProject.Controllers
 
             return View(users);
         }
+<<<<<<< HEAD
 
         public ActionResult Verify(String id)
+=======
+        public ActionResult Verify(ApplicationUser expert)
         {
-            var expert = _dbContext.Experts.SingleOrDefault(v => v.Id == id);
-
-            if (expert == null)
-                return HttpNotFound();
-
-            return View(expert);
+            var expertInDb = _dbContext.Experts.Find(expert.Id);
+            expertInDb.Validated = true;
+            _dbContext.SaveChanges();
+            return RedirectToAction("AdminVerify");
         }
         public ActionResult Deactivate(ApplicationUser expert)
+>>>>>>> aeeb41f566118c4fd2b0792285681512162280fd
         {
             var expertInDb = _dbContext.Users.Find(expert.Id);
+            expertInDb.ActiveStatus = false;
+            _dbContext.SaveChanges();
+            return RedirectToAction("AdminDeactivate");
+        }
+        public ActionResult Activate(ApplicationUser expert)
+        {
+            var expertInDb = _dbContext.Users.Find(expert.Id);
+<<<<<<< HEAD
 
 			expertInDb.ActiveStatus = false;
 
 			_dbContext.SaveChanges();
 
             return RedirectToAction("AdminDeactivate");
+=======
+            expertInDb.ActiveStatus = true;
+            _dbContext.SaveChanges();
+            return RedirectToAction("AdminActivate");
+>>>>>>> aeeb41f566118c4fd2b0792285681512162280fd
         }
 
 	}

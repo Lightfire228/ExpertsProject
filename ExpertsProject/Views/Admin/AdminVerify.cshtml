@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ExpertsProject.Models.ApplicationUser>
 @{
-    ViewBag.Title = "AdminDeactivate";
+    ViewBag.Title = "AdminVerify";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Deactivate Experts</h2>
+<h2>Verify Experts</h2>
 
 @if (Model.LongCount() > 0)
 {
@@ -47,11 +47,7 @@
                     @Html.Encode(expert.Name)
                 </td>
                 <td>
-<<<<<<< HEAD
-                    @Html.ActionLink("Deactivate", "Deactivate", new { Id = expert.Id })
-=======
-                    @Html.ActionLink("Deactivate","Deactivate", new { Id = expert.Id })
->>>>>>> aeeb41f566118c4fd2b0792285681512162280fd
+                    @Html.ActionLink("Verify", "Verify", new { Id = expert.Id })
                 </td>
             </tr>
         }

@@ -319,6 +319,7 @@
     <Content Include="Views\Admin\AdminDeactivate.cshtml" />
     <Content Include="Views\Admin\AdminValidate.cshtml" />
     <Content Include="Views\Admin\AdminActivate.cshtml" />
+    <Content Include="Views\Admin\AdminVerify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
