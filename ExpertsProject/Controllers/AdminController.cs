@@ -54,12 +54,18 @@ namespace ExpertsProject.Controllers {
 
 			return View(users);
 		}
+
 		public ActionResult Verify(ApplicationUser expert) {
+
 			var expertInDb = _dbContext.Experts.Find(expert.Id);
+
 			expertInDb.Validated = true;
+
 			_dbContext.SaveChanges();
+
 			return RedirectToAction("AdminVerify");
 		}
+
 		public ActionResult Deactivate(ApplicationUser expert) {
 			var expertInDb = _dbContext.Users.Find(expert.Id);
 			expertInDb.ActiveStatus = false;
