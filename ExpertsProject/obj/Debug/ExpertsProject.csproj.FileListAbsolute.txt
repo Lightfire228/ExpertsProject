@@ -162,3 +162,8 @@ C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\bin\Microsoft.Owin.Se
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.dll
 C:\Users\Andrew\Source\Repos\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.pdb
+D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.addedtitletotickets.resources
+D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.csproj.GenerateResource.Cache
+D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.Killing_messages_table.resources
+D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.addingmessages.resources
+D:\Software\Visual Studio\Projects\ExpertsProject\ExpertsProject\obj\Debug\ExpertsProject.Migrations.asdfrt.resources

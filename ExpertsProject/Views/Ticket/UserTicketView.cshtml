@@ -1,0 +1,96 @@
+﻿@model ExpertsProject.Models.TicketViewModels.TicketContentsViewModel
+@{
+    ViewBag.Title = "UserTicketView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("_ViewTicketContents"); }
+
+@using (Html.BeginForm("PostResponse", "Ticket", FormMethod.Post, new { @class = "form" })) {
+    <div class="form-group">
+        @Html.LabelFor(m => m.MessageToPost)
+        @Html.TextAreaFor(m => m.MessageToPost, new { @class = "form-control", rows = 4 })
+    </div>
+    <div>
+        @Html.HiddenFor(m => m.TicketID)
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" value="Add Post" />
+
+}
+
+
+
+@if (Model.AttachedExperts.LongCount() > 0) {
+
+    <style type="text/css" media="all">
+        table.mytable {
+            border-spacing: 50px; /*use to work like cellspacing */
+            width: 500px;
+            height: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(0, 244, 102);
+        }
+
+        tr:nth-child(odd) {
+            background-color: none;
+        }
+
+        /*use to work like cellpadding */
+        th, td {
+            padding: 5px;
+        }
+    </style>
+
+    <h3><br /><br />Experts already invided to ticket</h3>
+    <table class="mytable">
+        <tr>
+            <td>
+                <b>Expert Name</b>
+            </td>
+        </tr>
+        @foreach (var expert in Model.AttachedExperts) {
+            <tr>
+                <td>
+                    @Html.Encode(expert.Name)
+                </td>
+            </tr>
+        }
+    </table>
+} 
+else {
+    <h3><br /><br />No Experts on ticket</h3>
+}
+
+@if (Model.AllExperts.LongCount() > 0) {
+
+    <h3><br /><br />Invite Expert to ticket</h3>
+    <table class="mytable">
+        <tr>
+            <td>
+                <b>Expert Name</b>
+            </td>
+            <td>
+                <b>Invite to Ticket</b>
+            </td>
+        </tr>
+        @foreach (var expert in Model.AllExperts) {
+
+            <tr>
+                <td>
+                    @Html.Encode(expert.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Invite", "AttachExperts", new ExpertsProject.Models.TicketViewModels.AttachViewModel
+                            { TicketID = Model.TicketID, UserID = expert.Id })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else {  
+    <h3><br /><br />No Experts to invite to ticket</h3>
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,5 @@ namespace ExpertsProject.Models.UserViewModels {
 		public string Id {
 			get; set;
 		}
-
 	}
 }

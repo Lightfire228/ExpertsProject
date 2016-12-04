@@ -199,19 +199,40 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612040504227_added title to tickets.cs" />
+    <Compile Include="Migrations\201612040504227_added title to tickets.Designer.cs">
+      <DependentUpon>201612040504227_added title to tickets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612040723269_Killing_messages_table.cs" />
+    <Compile Include="Migrations\201612040723269_Killing_messages_table.Designer.cs">
+      <DependentUpon>201612040723269_Killing_messages_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612040727093_adding-messages.cs" />
+    <Compile Include="Migrations\201612040727093_adding-messages.Designer.cs">
+      <DependentUpon>201612040727093_adding-messages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612040739429_asdfrt.cs" />
+    <Compile Include="Migrations\201612040739429_asdfrt.Designer.cs">
+      <DependentUpon>201612040739429_asdfrt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DB Models\AttachedUsers.cs" />
     <Compile Include="Models\DB Models\Expert.cs" />
     <Compile Include="Models\DB Models\Message.cs" />
-    <Compile Include="Models\expertRegistryViewModel.cs" />
+    <Compile Include="Models\ExpertRegistryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\DB Models\Ticket.cs" />
+    <Compile Include="Models\TicketViewModels\AttachViewModel.cs" />
+    <Compile Include="Models\TicketViewModels\NewTicketViewModel.cs" />
+    <Compile Include="Models\TicketViewModels\TicketContentsViewModel.cs" />
+    <Compile Include="Models\TicketViewModels\TicketsList.cs" />
     <Compile Include="Models\UserViewModels\SearchStringViewModel.cs" />
     <Compile Include="Models\UserViewModels\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +247,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\deadLink.jpg" />
+    <Content Include="Images\deactivated.bmp" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -280,14 +303,22 @@
     <Content Include="Views\Account\ExpertRegister.cshtml" />
     <Content Include="Views\Account\ChooseRole.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_SearchBar.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\AdminDeactivate.cshtml" />
-    <Content Include="Views\Admin\AdminActivate.cshtml" />
-    <Content Include="Views\Admin\AdminVerify.cshtml" />
-    <Content Include="Views\Admin\Verify.cshtml" />
+    <Content Include="Views\User\_ListExperts.cshtml" />
+    <Content Include="Views\Shared\Oops.cshtml" />
+    <Content Include="Views\Ticket\UserIndex.cshtml" />
+    <Content Include="Views\Ticket\_ViewTickets.cshtml" />
+    <Content Include="Views\Shared\Deactivated.cshtml" />
+    <Content Include="Views\Ticket\New.cshtml" />
+    <Content Include="Views\Shared\AttachExperts.cshtml" />
+    <Content Include="Views\Ticket\_ViewTicketContents.cshtml" />
+    <Content Include="Views\Ticket\UserTicketView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -296,6 +327,20 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612040504227_added title to tickets.resx">
+      <DependentUpon>201612040504227_added title to tickets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612040723269_Killing_messages_table.resx">
+      <DependentUpon>201612040723269_Killing_messages_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612040727093_adding-messages.resx">
+      <DependentUpon>201612040727093_adding-messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612040739429_asdfrt.resx">
+      <DependentUpon>201612040739429_asdfrt.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
