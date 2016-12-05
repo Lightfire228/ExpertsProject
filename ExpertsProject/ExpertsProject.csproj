@@ -231,6 +231,7 @@
     <Compile Include="Models\DB Models\Ticket.cs" />
     <Compile Include="Models\TicketViewModels\AttachViewModel.cs" />
     <Compile Include="Models\TicketViewModels\NewTicketViewModel.cs" />
+    <Compile Include="Models\TicketViewModels\SortViewModel.cs" />
     <Compile Include="Models\TicketViewModels\TicketContentsViewModel.cs" />
     <Compile Include="Models\TicketViewModels\TicketsList.cs" />
     <Compile Include="Models\UserViewModels\SearchStringViewModel.cs" />

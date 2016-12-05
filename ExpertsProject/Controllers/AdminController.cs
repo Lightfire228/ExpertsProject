@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ExpertsProject.Models;
 using ExpertsProject.Models.UserViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace ExpertsProject.Controllers {
 	public class AdminController : Controller {
@@ -15,9 +16,16 @@ namespace ExpertsProject.Controllers {
 		}
 		// GET: Admin
 		public ActionResult Index() {
+			
+			if (!isAdmin())
+				return View("Oops");
+
 			return View();
 		}
 		public ActionResult AdminVerify() {
+
+			if (!isAdmin())
+				return View("Oops");
 
 			IEnumerable<Expert> experts = _dbContext.Experts.ToList();
 			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
@@ -36,6 +44,9 @@ namespace ExpertsProject.Controllers {
 		}
 		public ActionResult AdminDeactivate() {
 
+			if (!isAdmin())
+				return View("Oops");
+
 			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
 
 			users = from user in users
@@ -45,6 +56,9 @@ namespace ExpertsProject.Controllers {
 			return View(users);
 		}
 		public ActionResult AdminActivate() {
+
+			if (!isAdmin())
+				return View("Oops");
 
 			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
 
@@ -57,6 +71,9 @@ namespace ExpertsProject.Controllers {
 
 		public ActionResult Verify(ApplicationUser expert) {
 
+			if (!isAdmin())
+				return View("Oops");
+
 			var expertInDb = _dbContext.Experts.Find(expert.Id);
 
 			expertInDb.Validated = true;
@@ -67,16 +84,34 @@ namespace ExpertsProject.Controllers {
 		}
 
 		public ActionResult Deactivate(ApplicationUser expert) {
+
+			if (!isAdmin())
+				return View("Oops");
+
 			var expertInDb = _dbContext.Users.Find(expert.Id);
 			expertInDb.ActiveStatus = false;
 			_dbContext.SaveChanges();
 			return RedirectToAction("AdminDeactivate");
 		}
 		public ActionResult Activate(ApplicationUser expert) {
+
+			if (!isAdmin())
+				return View("Oops");
+
 			var expertInDb = _dbContext.Users.Find(expert.Id);
 			expertInDb.ActiveStatus = true;
 			_dbContext.SaveChanges();
 			return RedirectToAction("AdminActivate");
 		}
+
+
+		public ApplicationUser getUser() {
+			return _dbContext.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
+		}
+
+		public bool isAdmin() {
+			return System.Web.HttpContext.Current.User.Identity.IsAuthenticated && getUser().IsAdmin;
+		}
+
 	}
 }

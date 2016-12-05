@@ -20,7 +20,7 @@ namespace ExpertsProject.Controllers
 				return RedirectToAction("Login", "Account");
 			}
 			else if (isExpert()) {
-				return RedirectToAction("ExpertIndex");
+				return RedirectToAction("Expert");
 			}
 			
             return RedirectToAction("UserIndex");
@@ -204,7 +204,13 @@ namespace ExpertsProject.Controllers
 			
 		}
 
-		public ActionResult ExpertIndex() {
+		public ActionResult Expert() {
+
+			return RedirectToAction("ExpertIndex", new SortViewModel());
+
+		}
+
+		public ActionResult ExpertIndex(SortViewModel sortModel) {
 
 			if (!isLoggedIn()) {
 				return RedirectToAction("Login", "Account");
@@ -224,7 +230,7 @@ namespace ExpertsProject.Controllers
 						   select ticket;
 
 			TicketsList model = new TicketsList();
-			model.Tickets = modelTickets;
+			model.Tickets = sort(sortModel, modelTickets);
 			model.IsMe = false;
 
 			return View(model);
@@ -249,5 +255,44 @@ namespace ExpertsProject.Controllers
 		public bool isTicketCreator(Ticket ticket) {
 			return ticket.User.Id.Equals(getUser().Id);
 		}
-    }
+
+		public IEnumerable<Ticket> sort(SortViewModel model, IEnumerable<Ticket> tickets) {
+
+			IEnumerable<Ticket> sorted = tickets;
+
+			switch (model.Selection) {
+				case SortBy.LAST_RESPONSE_DATE:
+					break;
+
+				case SortBy.POST_DATE:
+
+					sorted = from ticket in tickets
+							 orderby ticket.Created
+							 select ticket;
+					break;
+
+				case SortBy.SUBJECT:
+
+					sorted = from ticket in tickets
+							 orderby ticket.Title
+							 select ticket;
+					break;
+
+				case SortBy.USERNAME:
+
+					sorted = from ticket in tickets
+							 orderby ticket.User.Name
+							 select ticket;
+					break;
+
+				case SortBy.NONE:
+					break;
+
+			}
+
+			return sorted;
+
+		}
+
+	}
 }

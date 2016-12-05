@@ -1,5 +1,5 @@
 ﻿@model ExpertsProject.Models.TicketViewModels.TicketsList
-
+@using ExpertsProject.Models.TicketViewModels
 @{
     ViewBag.Title = "ExpertIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +8,21 @@
 <h2>Tickets to respond</h2>
 
 @Html.ActionLink("Switch to my open tickets", "UserIndex")
+<br /><br />
 
+<table>
+    <tr>
+        <tb>
+            @Html.ActionLink("Sort by Name", "ExpertIndex", new SortViewModel { Selection = SortBy.USERNAME })
+        </tb>
+        <tb>
+            @Html.ActionLink("Sort by date created", "ExpertIndex", new SortViewModel { Selection = SortBy.POST_DATE })
+        </tb>
+        <tb>
+            @Html.ActionLink("Sort by subject", "ExpertIndex", new SortViewModel { Selection = SortBy.SUBJECT })
+        </tb>
+    </tr>
+</table>
 @{
     Html.RenderPartial("_ViewTickets");
     if (Model.Tickets.LongCount() <= 0) {

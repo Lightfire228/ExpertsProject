@@ -53,7 +53,7 @@
         </td>
         @if (!Model.IsMe) {
             <td>
-                @Html.Encode(ticket.CreatedBy)
+                @Html.Encode(ticket.User.Name)
             </td>
         }
         <td>
