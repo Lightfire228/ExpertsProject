@@ -3,87 +3,115 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ExpertsProject.Models;
+using ExpertsProject.Models.UserViewModels;
+using Microsoft.AspNet.Identity;
 
-namespace ExpertsProject.Controllers
-{
-    public class AdminController : Controller
-    {
-        // GET: Admin
-        public ActionResult Index()
-        {
-            return View();
-        }
+namespace ExpertsProject.Controllers {
+	public class AdminController : Controller {
+		private ApplicationDbContext _dbContext;
 
-        // GET: Admin/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+		public AdminController() {
+			_dbContext = new ApplicationDbContext();
+		}
+		// GET: Admin
+		public ActionResult Index() {
+			
+			if (!isAdmin())
+				return View("Oops");
 
-        // GET: Admin/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+			return View();
+		}
+		public ActionResult AdminVerify() {
 
-        // POST: Admin/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+			if (!isAdmin())
+				return View("Oops");
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			IEnumerable<Expert> experts = _dbContext.Experts.ToList();
+			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+			IEnumerable<SearchViewModel> models;
 
-        // GET: Admin/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        // POST: Admin/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+			experts = from expert in experts
+					  where !expert.Validated
+					  select expert;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			models = from expert in experts
+					 join user in users on expert.Id equals user.Id
+					 select new SearchViewModel { Name = user.Name, Expertise = expert.ExpertiseCatagory, Id = expert.Id };
 
-        // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+			return View(models);
+		}
+		public ActionResult AdminDeactivate() {
 
-        // POST: Admin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+			if (!isAdmin())
+				return View("Oops");
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+
+			users = from user in users
+					where user.ActiveStatus
+					select user;
+
+			return View(users);
+		}
+		public ActionResult AdminActivate() {
+
+			if (!isAdmin())
+				return View("Oops");
+
+			IEnumerable<ApplicationUser> users = _dbContext.Users.ToList();
+
+			users = from user in users
+					where !user.ActiveStatus
+					select user;
+
+			return View(users);
+		}
+
+		public ActionResult Verify(ApplicationUser expert) {
+
+			if (!isAdmin())
+				return View("Oops");
+
+			var expertInDb = _dbContext.Experts.Find(expert.Id);
+
+			expertInDb.Validated = true;
+
+			_dbContext.SaveChanges();
+
+			return RedirectToAction("AdminVerify");
+		}
+
+		public ActionResult Deactivate(ApplicationUser expert) {
+
+			if (!isAdmin())
+				return View("Oops");
+
+			var expertInDb = _dbContext.Users.Find(expert.Id);
+			expertInDb.ActiveStatus = false;
+			_dbContext.SaveChanges();
+			return RedirectToAction("AdminDeactivate");
+		}
+		public ActionResult Activate(ApplicationUser expert) {
+
+			if (!isAdmin())
+				return View("Oops");
+
+			var expertInDb = _dbContext.Users.Find(expert.Id);
+			expertInDb.ActiveStatus = true;
+			_dbContext.SaveChanges();
+			return RedirectToAction("AdminActivate");
+		}
+
+
+		public ApplicationUser getUser() {
+			return _dbContext.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
+		}
+
+		public bool isAdmin() {
+			return System.Web.HttpContext.Current.User.Identity.IsAuthenticated && getUser().IsAdmin;
+		}
+
+	}
 }

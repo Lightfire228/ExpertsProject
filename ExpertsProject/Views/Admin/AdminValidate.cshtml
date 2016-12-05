@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ExpertsProject.Models.UserViewModels.SearchViewModel>
+@{
+    ViewBag.Title = "AdminValidate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Validate Experts</h2>
+
+@if (Model.LongCount() > 0) {
+
+<style type="text/css" media="all">
+    table.mytable {
+        border-spacing: 50px; /*use to work like cellspacing */
+        width: 500px;
+        height: 20px;
+    }
+
+    tr:nth-child(even) {
+        background-color: rgb(0, 244, 102);
+    }
+
+    tr:nth-child(odd) {
+        background-color: none;
+    }
+
+    /*use to work like cellpadding */
+    th, td {
+        padding: 5px;
+    }
+</style>
+
+<table class="mytable">
+    <tr>
+        <td>
+            <b>Expert Name</b>
+        </td>
+        <td>
+            <b>Experties Catagory</b>
+        </td>
+
+        <td>
+            <b>Deactivate Account</b>
+        </td>
+    </tr>
+    @foreach (var expert in Model) {
+
+        <tr>
+            <td>
+                @Html.Encode(expert.Name)
+            </td>
+            <td>
+                @Html.Encode(expert.Expertise)
+            </td>
+            <td>
+                @Html.ActionLink("Deactivate", "DeactivateForm", new {
+                   Id = expert.Id
+               })
+            </td>
+        </tr>
+    }
+</table>
+}

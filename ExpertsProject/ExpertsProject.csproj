@@ -231,6 +231,7 @@
     <Compile Include="Models\DB Models\Ticket.cs" />
     <Compile Include="Models\TicketViewModels\AttachViewModel.cs" />
     <Compile Include="Models\TicketViewModels\NewTicketViewModel.cs" />
+    <Compile Include="Models\TicketViewModels\SortViewModel.cs" />
     <Compile Include="Models\TicketViewModels\TicketContentsViewModel.cs" />
     <Compile Include="Models\TicketViewModels\TicketsList.cs" />
     <Compile Include="Models\UserViewModels\SearchStringViewModel.cs" />
@@ -305,7 +306,6 @@
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_SearchBar.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\User\_ListExperts.cshtml" />
     <Content Include="Views\Shared\Oops.cshtml" />
     <Content Include="Views\Ticket\UserIndex.cshtml" />
@@ -315,10 +315,16 @@
     <Content Include="Views\Shared\AttachExperts.cshtml" />
     <Content Include="Views\Ticket\_ViewTicketContents.cshtml" />
     <Content Include="Views\Ticket\UserTicketView.cshtml" />
+    <Content Include="Views\Ticket\ExpertIndex.cshtml" />
+    <Content Include="Views\Ticket\ExpertTicketView.cshtml" />
+    <Content Include="Views\Admin\AdminActivate.cshtml" />
+    <Content Include="Views\Admin\AdminDeactivate.cshtml" />
+    <Content Include="Views\Admin\AdminValidate.cshtml" />
+    <Content Include="Views\Admin\AdminVerify.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

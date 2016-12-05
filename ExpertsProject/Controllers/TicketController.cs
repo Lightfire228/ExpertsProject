@@ -20,7 +20,7 @@ namespace ExpertsProject.Controllers
 				return RedirectToAction("Login", "Account");
 			}
 			else if (isExpert()) {
-				return RedirectToAction("ExpertIndex");
+				return RedirectToAction("Expert");
 			}
 			
             return RedirectToAction("UserIndex");
@@ -54,6 +54,10 @@ namespace ExpertsProject.Controllers
 			if (!isLoggedIn())
 				return RedirectToAction("Login", "Account");
 
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
+
+
 			return View();
 		}
 
@@ -62,6 +66,9 @@ namespace ExpertsProject.Controllers
 
 			if (!isLoggedIn())
 				return RedirectToAction("Oops");
+
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
 
 			Ticket ticket        = new Ticket();
 			Message message      = new Message();
@@ -106,7 +113,7 @@ namespace ExpertsProject.Controllers
 			IEnumerable<Expert> preAddedExperts;
 
 			experts = from expert in _dbContext.Experts.ToList()
-					  where expert.Validated
+					  where expert.Validated && expert.Id != getUser().Id // So experts don't add themselves
 					  select expert;
 
 			preAddedExperts = from expert in experts
@@ -142,6 +149,9 @@ namespace ExpertsProject.Controllers
 			if (!isLoggedIn())
 				return RedirectToAction("Oops");
 
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
+
 			Ticket ticket = _dbContext.Ticket.Find(model.TicketID);
 			Message message = new Message();
 
@@ -149,6 +159,21 @@ namespace ExpertsProject.Controllers
 			message.Date = System.DateTime.Now;
 			message.User = getUser();
 			message.Ticket = ticket;
+
+			if (model.Deactivate) {
+				
+				message.BodyText = "Expert " + getUser().Name + " has removed themselves from this ticket. Reason: \n" + message.BodyText;
+				_dbContext.Messages.Add(message);
+				_dbContext.SaveChanges();
+	
+				AttachedUsers attached = _dbContext.AttachedUsers.Find(getUser().Id, ticket.ID);
+
+				_dbContext.AttachedUsers.Remove(attached);
+				_dbContext.SaveChanges();
+
+				return RedirectToAction("Index");
+
+			}
 
 			_dbContext.Messages.Add(message);
 			_dbContext.SaveChanges();
@@ -160,6 +185,9 @@ namespace ExpertsProject.Controllers
 
 			if (!isLoggedIn())
 				return RedirectToAction("Oops");
+
+			if (!getUser().ActiveStatus)
+				return View("Deactivated");
 
 			Ticket ticket = _dbContext.Ticket.Find(model.TicketID);
 			ApplicationUser user = _dbContext.Users.Find(model.UserID);
@@ -176,11 +204,37 @@ namespace ExpertsProject.Controllers
 			
 		}
 
-		public ActionResult ExpertIndex() {
+		public ActionResult Expert() {
 
-			return View();
+			return RedirectToAction("ExpertIndex", new SortViewModel());
+
 		}
-		
+
+		public ActionResult ExpertIndex(SortViewModel sortModel) {
+
+			if (!isLoggedIn()) {
+				return RedirectToAction("Login", "Account");
+			}
+
+			if (!isExpert())
+				return RedirectToAction("UserIndex");
+
+			IEnumerable<Ticket> modelTickets;
+			IEnumerable<Ticket> tickets = _dbContext.Ticket.ToList();
+
+			ApplicationUser user = getUser();
+
+			modelTickets = from ticket in tickets
+						   from attached in _dbContext.AttachedUsers.ToList()
+						   where ticket.ID == attached.TicketID && user.Id == attached.UserID
+						   select ticket;
+
+			TicketsList model = new TicketsList();
+			model.Tickets = sort(sortModel, modelTickets);
+			model.IsMe = false;
+
+			return View(model);
+		}
 
 		public bool isExpert(ApplicationUser user) {
 			return _dbContext.Experts.Find(user.Id) != null;
@@ -201,5 +255,44 @@ namespace ExpertsProject.Controllers
 		public bool isTicketCreator(Ticket ticket) {
 			return ticket.User.Id.Equals(getUser().Id);
 		}
-    }
+
+		public IEnumerable<Ticket> sort(SortViewModel model, IEnumerable<Ticket> tickets) {
+
+			IEnumerable<Ticket> sorted = tickets;
+
+			switch (model.Selection) {
+				case SortBy.LAST_RESPONSE_DATE:
+					break;
+
+				case SortBy.POST_DATE:
+
+					sorted = from ticket in tickets
+							 orderby ticket.Created
+							 select ticket;
+					break;
+
+				case SortBy.SUBJECT:
+
+					sorted = from ticket in tickets
+							 orderby ticket.Title
+							 select ticket;
+					break;
+
+				case SortBy.USERNAME:
+
+					sorted = from ticket in tickets
+							 orderby ticket.User.Name
+							 select ticket;
+					break;
+
+				case SortBy.NONE:
+					break;
+
+			}
+
+			return sorted;
+
+		}
+
+	}
 }

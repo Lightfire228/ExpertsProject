@@ -1,5 +1,6 @@
 ﻿using ExpertsProject.Models;
 using ExpertsProject.Models.UserViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,11 @@ namespace ExpertsProject.Controllers
 					 select new SearchViewModel { Name = user.Name, Expertise = expert.ExpertiseCatagory, Id = expert.Id };
 
 			return View(models);
+		}
+
+		// Used for retrieving current user without being in a Controller
+		public static ApplicationUser getCurrentUser() {
+			return new ApplicationDbContext().Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
 		}
     }
 }

@@ -1,0 +1,27 @@
+﻿@model ExpertsProject.Models.TicketViewModels.TicketContentsViewModel
+@{
+    ViewBag.Title = "ExpertTicketView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ExpertTicketView</h2>
+
+@{ Html.RenderPartial("_ViewTicketContents"); }
+
+@using (Html.BeginForm("PostResponse", "Ticket", FormMethod.Post, new { @class = "form" })) {
+    <div class="form-group">
+        @Html.LabelFor(m => m.MessageToPost)
+        @Html.TextAreaFor(m => m.MessageToPost, new { @class = "form-control", rows = 4 })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Deactivate)
+        @Html.CheckBoxFor(m => m.Deactivate, new { @checked = "checked" } )
+    </div>
+    <div>
+        @Html.HiddenFor(m => m.TicketID)
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" value="Add Post" />
+
+}
